@@ -67,7 +67,7 @@ function addToCart(productName, productPrice, productImageUrl, productUrl) {
     }
 
     saveCart(cart);
-    alert('Товар додано до кошику');
+    alert(`Товар "${productName}" додано до кошика!`);
 }
 
 // 2. Оновлення лічильника навігації
@@ -111,7 +111,7 @@ function renderCart() {
 
     if (cart.length === 0) {
         cartItemsContainer.innerHTML = '<p class="empty-cart-message">Ваш кошик порожній. Час обрати щось прекрасне! ✨</p>';
-        cartTotalElement.textContent = '0.00 UAH';
+        cartTotalElement.textContent = '0.00 грн';
         // Приховуємо вкладку "Доставка", якщо кошик порожній
         if (deliveryTabButton) deliveryTabButton.style.display = 'none';
         return;
@@ -132,6 +132,7 @@ function renderCart() {
             </div>
             <div class="cart-item-details">
                 <a href="${item.url}" class="item-name">${item.name}</a>
+                <p class="item-price">Ціна: ${item.price.toFixed(2)} грн</p>
             </div>
             <div class="cart-item-quantity">
                 <button class="quantity-btn" data-index="${index}" data-action="decrease">-</button>
@@ -141,15 +142,19 @@ function renderCart() {
             <div class="cart-item-subtotal">
                 ${itemTotal.toFixed(2)} UAH
             </div>
+            <button class="cart-item-remove" data-index="${index}">&#10006;</button>
         `;
         cartItemsContainer.appendChild(itemElement);
     });
 
-    cartTotalElement.textContent = total.toFixed(2) + ' UAH';
+    cartTotalElement.textContent = total.toFixed(2) + ' грн';
 
     // Додаємо слухачів подій для кнопок
     cartItemsContainer.querySelectorAll('.quantity-btn').forEach(button => {
         button.addEventListener('click', handleQuantityChange);
+    });
+    cartItemsContainer.querySelectorAll('.cart-item-remove').forEach(button => {
+        button.addEventListener('click', removeItem);
     });
 }
 
@@ -174,9 +179,20 @@ function handleQuantityChange(event) {
     }
 }
 
+function removeItem(event) {
+    const index = event.currentTarget.dataset.index;
+    let cart = getCart();
+
+    if (index >= 0 && index < cart.length) {
+        cart.splice(index, 1); 
+        saveCart(cart);
+        renderCart();
+    }
+}
+
 function clearCart() {
     if (confirm('Ви впевнені, що хочете повністю очистити кошик?')) {
-        localStorage.removeItem(getCartKey());
+        localStorage.removeItem('shoppingCart');
         updateCartIconCount();
         renderCart();
     }

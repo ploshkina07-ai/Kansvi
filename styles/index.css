@@ -25,7 +25,7 @@ body {
    display: flex;
     flex-direction: column;
     margin: auto;
-    background-image: url(/photo/background.jpg);
+    background-image: url(../photo/background.jpg);
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat;
@@ -129,11 +129,19 @@ body {
 }
 
 .mobile-quick-actions {
-    display: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+    margin-right: 12px;
 }
 
-.nav-list li:nth-last-child(2) {
-    display: list-item;
+.mobile-quick-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
 }
 
 /* ------------------- HERO SECTION ------------------- */
@@ -254,7 +262,7 @@ section span {
 
 /* ------------------- FOOTER ------------------- */
 footer {
-    margin-top: 24px;
+    margin-top: 0;
     padding: 36px 20px;
     background: #f4efea;
     border-top: 1px solid rgba(151, 133, 130, 0.2);
@@ -387,21 +395,14 @@ footer {
         object-fit: contain;
     }
 
-    .nav-list li:last-child {
-        order: -1;
-        margin-bottom: 12px;
-        padding-bottom: 12px;
-        border-bottom: 1px solid rgba(17, 17, 17, 0.12);
-    }
-
-    .nav-icon[href="/profile.html"]::after {
+    .nav-icon[href="profile.html"]::after {
         content: "Профіль";
         font-family: 'Noto Serif Display', serif;
         font-size: 18px;
         font-weight: 200;
     }
 
-    .nav-icon[href="/profile.html"] .icons {
+    .nav-icon[href="profile.html"] .icons {
         width: 28px;
         height: 28px;
     }
@@ -442,7 +443,7 @@ footer {
     }
 
     footer {
-        margin-top: 8px;
+        margin-top: 0;
         padding: 24px 16px;
     }
 

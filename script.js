@@ -194,7 +194,7 @@ function renderOrdersInfo(ordersInfo) {
     ordersInfo.innerHTML = `
       <div class="order-empty-state">
         <p>У вас ще немає оформлених замовлень.</p>
-        <a class="orders-link" href="/delivery.html">Перейти до кошика</a>
+        <a class="orders-link" href="delivery.html">Перейти до кошика</a>
       </div>
     `;
     return;
@@ -235,7 +235,7 @@ function renderOrdersInfo(ordersInfo) {
           <h3>Склад замовлення</h3>
           ${itemsMarkup}
         </div>
-        <a class="orders-link" href="/order-tracking.html?order=${encodeURIComponent(order.orderNumber || '')}">Відкрити сторінку відстеження</a>
+        <a class="orders-link" href="order-tracking.html?order=${encodeURIComponent(order.orderNumber || '')}">Відкрити сторінку відстеження</a>
       </div>
     `;
   }).join('');
@@ -368,6 +368,13 @@ function initMobileNav() {
           width: 100%;
         }
 
+        .main-nav .mobile-profile-item {
+          order: -1;
+          margin-bottom: 10px;
+          padding-bottom: 12px;
+          border-bottom: 1px solid rgba(151, 133, 130, 0.22);
+        }
+
         .main-nav .nav-link,
         .main-nav .nav-icon {
           display: flex;
@@ -402,28 +409,6 @@ function initMobileNav() {
 
  
 
-  const cartMenuItem = navList.querySelector('a[href="/delivery.html"]')?.closest('li');
-  const cartMenuItemNextSibling = cartMenuItem?.nextElementSibling || null;
-
-  const moveCartItemForViewport = () => {
-    if (!cartMenuItem) return;
-
-    if (mediaQuery.matches) {
-      if (navList.contains(cartMenuItem)) {
-        cartMenuItem.remove();
-      }
-      return;
-    }
-
-    if (!navList.contains(cartMenuItem)) {
-      if (cartMenuItemNextSibling && navList.contains(cartMenuItemNextSibling)) {
-        navList.insertBefore(cartMenuItem, cartMenuItemNextSibling);
-      } else {
-        navList.appendChild(cartMenuItem);
-      }
-    }
-  };
-
   let toggleButton = nav.querySelector('.mobile-menu-toggle');
   if (!toggleButton) {
     toggleButton = document.createElement('button');
@@ -435,8 +420,11 @@ function initMobileNav() {
     nav.appendChild(toggleButton);
   }
 
-
   const mediaQuery = window.matchMedia('(max-width: 768px)');
+  const profileMenuItem = navList.querySelector('a[href="profile.html"]')?.closest('li');
+  if (profileMenuItem) {
+    profileMenuItem.classList.add('mobile-profile-item');
+  }
 
   const closeMenu = () => {
     nav.classList.remove('menu-open');
@@ -477,7 +465,6 @@ function initMobileNav() {
   });
 
   const handleViewportChange = () => {
-    moveCartItemForViewport();
     if (!mediaQuery.matches) closeMenu();
   };
 
@@ -487,7 +474,6 @@ function initMobileNav() {
     mediaQuery.addListener(handleViewportChange);
   }
 
-  moveCartItemForViewport();
 }
 
 function initDeliveryTabs() {
@@ -674,7 +660,6 @@ function initDeliveryForm() {
     saveOrderToHistory(orderData);
     if (typeof clearCart === 'function') {
       localStorage.removeItem(typeof getCartKey === 'function' ? getCartKey() : 'shoppingCart_guest');
-      if (typeof updateCartIconCount === 'function') updateCartIconCount();
       if (typeof renderCart === 'function') renderCart();
     }
     window.location.href = `order-tracking.html?order=${encodeURIComponent(orderData.orderNumber)}`;
@@ -1056,7 +1041,7 @@ function ensureGlobalFooterStyles() {
   style.id = 'global-footer-styles';
   style.textContent = `
     .site-footer-global {
-      margin-top: 64px;
+      margin-top: 0;
       padding: 36px 20px;
       background: #f4efea;
       border-top: 1px solid rgba(151, 133, 130, 0.2);
@@ -1099,7 +1084,7 @@ function ensureGlobalFooterStyles() {
 
     @media (max-width: 768px) {
       .site-footer-global {
-        margin-top: 40px;
+        margin-top: 0;
         padding: 28px 16px;
       }
 
@@ -1154,10 +1139,6 @@ function initPage() {
   initProfileExtras();
   initAddToCartButtons();
   renderGlobalFooter();
-
-  if (typeof updateCartIconCount === 'function') {
-    updateCartIconCount();
-  }
 }
 
 document.addEventListener('DOMContentLoaded', initPage);
