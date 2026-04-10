@@ -15,6 +15,11 @@ function getCart() {
     return cartRaw ? JSON.parse(cartRaw) : [];
 }
 
+function normalizeRelativeAssetPath(path) {
+    if (!path) return '';
+    return String(path).replace(/^\/+/, '');
+}
+
 function saveCart(cart) {
     localStorage.setItem(getCartKey(), JSON.stringify(cart));
     updateCartIconCount();
@@ -160,7 +165,7 @@ function addToCart(productName, productPrice, productImageUrl, productUrl, produ
             name: productName,
             price,
             quantity: 1,
-            imageUrl: productImageUrl || '',
+            imageUrl: normalizeRelativeAssetPath(productImageUrl || ''),
             url: productUrl || window.location.pathname,
             description: productDescription || ''
         });
@@ -174,7 +179,7 @@ function addToCart(productName, productPrice, productImageUrl, productUrl, produ
 function triggerCartIconAnimation(sourceButton) {
     ensureCartFeedbackStyles();
 
-    const cartLink = document.querySelector('.main-nav a[href="/delivery.html"]');
+    const cartLink = document.querySelector('.main-nav a[href="delivery.html"], .main-nav a[href="/delivery.html"]');
     if (sourceButton) {
         sourceButton.classList.remove('add-to-cart-feedback', 'add-to-cart-feedback-success');
         void sourceButton.offsetWidth;
@@ -214,7 +219,7 @@ function triggerCartIconAnimation(sourceButton) {
 function updateCartIconCount() {
     const cart = getCart();
     const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-    const cartLink = document.querySelector('.main-nav a[href="/delivery.html"]');
+    const cartLink = document.querySelector('.main-nav a[href="delivery.html"], .main-nav a[href="/delivery.html"]');
     if (!cartLink) return;
 
     if (window.getComputedStyle(cartLink).position === 'static') {
@@ -266,7 +271,7 @@ function renderCart() {
         itemElement.classList.add('cart-item');
         itemElement.innerHTML = `
             <div class="cart-item-image">
-                <img src="${item.imageUrl}" alt="${item.name}">
+                <img src="${normalizeRelativeAssetPath(item.imageUrl)}" alt="${item.name}">
             </div>
             <div class="cart-item-details">
                 <a href="${item.url}" class="item-name">${item.name}</a>

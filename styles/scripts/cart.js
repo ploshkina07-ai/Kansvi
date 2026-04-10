@@ -16,6 +16,11 @@ function getCart() {
     return cart ? JSON.parse(cart) : [];
 }
 
+function normalizeRelativeAssetPath(path) {
+    if (!path) return '';
+    return String(path).replace(/^\/+/, '');
+}
+
 function saveCart(cart) {
     localStorage.setItem(getCartKey(), JSON.stringify(cart));
     updateCartIconCount();
@@ -61,7 +66,7 @@ function addToCart(productName, productPrice, productImageUrl, productUrl) {
             name: productName,
             price: price,
             quantity: 1,
-            imageUrl: productImageUrl,
+            imageUrl: normalizeRelativeAssetPath(productImageUrl),
             url: productUrl 
         });
     }
@@ -144,7 +149,7 @@ function updateCartIconCount() {
     const cart = getCart();
     const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
     // Шукаємо посилання на delivery.html
-    const cartLink = document.querySelector('.main-nav a[href="/delivery.html"]'); 
+    const cartLink = document.querySelector('.main-nav a[href="delivery.html"], .main-nav a[href="/delivery.html"]'); 
     
     if (cartLink) {
         let countSpan = document.getElementById('cart-count');
@@ -197,7 +202,7 @@ function renderCart() {
         itemElement.classList.add('cart-item');
         itemElement.innerHTML = `
             <div class="cart-item-image">
-                <img src="${item.imageUrl}" alt="${item.name}">
+                <img src="${normalizeRelativeAssetPath(item.imageUrl)}" alt="${item.name}">
             </div>
             <div class="cart-item-details">
                 <a href="${item.url}" class="item-name">${item.name}</a>

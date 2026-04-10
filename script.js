@@ -1018,6 +1018,7 @@ function initProfileExtras() {
 }
 
 function getProductDetailsFromPage(button) {
+  const normalizeRelativeAssetPath = (path) => (path ? String(path).replace(/^\/+/, '') : '');
   const dataName = button.dataset.name;
   const dataPrice = button.dataset.price;
   const dataImageUrl = button.dataset.imageUrl;
@@ -1041,7 +1042,7 @@ function getProductDetailsFromPage(button) {
   return {
     productName,
     productPrice,
-    productImageUrl,
+    productImageUrl: normalizeRelativeAssetPath(productImageUrl),
     productUrl,
   };
 }
