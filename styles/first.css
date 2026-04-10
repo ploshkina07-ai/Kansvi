@@ -365,13 +365,6 @@ body {
   }
 }
 
-@media (min-width: 769px) {
-  .product {
-    padding-bottom: 80px;
-  }
-}
-
-
 footer {
     margin-top: 0;
     padding: 36px 20px;
@@ -431,5 +424,11 @@ footer {
     .footer__wrapper {
         grid-template-columns: 1fr;
         gap: 18px;
+    }
+}
+
+@media (min-width: 769px) {
+    footer {
+        margin-top: 0.5cm;
     }
 }
