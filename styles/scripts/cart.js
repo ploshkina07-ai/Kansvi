@@ -111,7 +111,7 @@ function renderCart() {
 
     if (cart.length === 0) {
         cartItemsContainer.innerHTML = '<p class="empty-cart-message">Ваш кошик порожній. Час обрати щось прекрасне! ✨</p>';
-        cartTotalElement.textContent = '0.00 грн';
+        cartTotalElement.textContent = '0.00 UAH';
         // Приховуємо вкладку "Доставка", якщо кошик порожній
         if (deliveryTabButton) deliveryTabButton.style.display = 'none';
         return;
@@ -132,7 +132,7 @@ function renderCart() {
             </div>
             <div class="cart-item-details">
                 <a href="${item.url}" class="item-name">${item.name}</a>
-                <p class="item-price">Ціна: ${item.price.toFixed(2)} грн</p>
+                <p class="item-price">Ціна: ${item.price.toFixed(2)} UAH</p>
             </div>
             <div class="cart-item-quantity">
                 <button class="quantity-btn" data-index="${index}" data-action="decrease">-</button>
@@ -147,7 +147,7 @@ function renderCart() {
         cartItemsContainer.appendChild(itemElement);
     });
 
-    cartTotalElement.textContent = total.toFixed(2) + ' грн';
+    cartTotalElement.textContent = total.toFixed(2) + ' UAH';
 
     // Додаємо слухачів подій для кнопок
     cartItemsContainer.querySelectorAll('.quantity-btn').forEach(button => {

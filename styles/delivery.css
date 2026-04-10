@@ -101,19 +101,10 @@ body {
 }
 
 .mobile-quick-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-left: auto;
-    margin-right: 12px;
+    display: none;
 }
 
 .mobile-quick-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
     text-decoration: none;
 }
 

@@ -204,7 +204,7 @@ function renderCart() {
 
     if (cart.length === 0) {
         cartItemsContainer.innerHTML = '<p class="empty-cart-message">Ваш кошик порожній. Час обрати щось прекрасне! ✨</p>';
-        cartTotalElement.textContent = '0.00 грн';
+        cartTotalElement.textContent = '0.00 UAH';
         if (deliveryTabButton) deliveryTabButton.style.display = 'none';
         return;
     }
@@ -230,13 +230,13 @@ function renderCart() {
                 <button class="quantity-btn" data-index="${index}" data-action="increase">+</button>
             </div>
             <div class="cart-item-subtotal">
-                ${itemTotal.toFixed(2)} грн
+                ${itemTotal.toFixed(2)} UAH
             </div>
         `;
         cartItemsContainer.appendChild(itemElement);
     });
 
-    cartTotalElement.textContent = total.toFixed(2) + ' грн';
+    cartTotalElement.textContent = total.toFixed(2) + ' UAH';
     cartItemsContainer.querySelectorAll('.quantity-btn').forEach((button) => {
         button.addEventListener('click', handleQuantityChange);
     });
