@@ -390,6 +390,13 @@ function initMobileNav() {
           font-size: 18px !important;
         }
 
+        .main-nav .nav-icon-label {
+          font-family: 'Noto Serif Display', serif;
+          font-size: 18px;
+          font-weight: 200;
+          color: #181818;
+        }
+
         .main-nav .nav-link::after {
           display: none;
         }
@@ -421,9 +428,25 @@ function initMobileNav() {
   }
 
   const mediaQuery = window.matchMedia('(max-width: 768px)');
-  const profileMenuItem = navList.querySelector('a[href="profile.html"]')?.closest('li');
+  const cartMenuItem = navList.querySelector('a[href="delivery.html"], a[href="/delivery.html"]')?.closest('li');
+  if (cartMenuItem) {
+    cartMenuItem.remove();
+  }
+
+  const profileMenuItem = navList.querySelector('a[href="profile.html"], a[href="/profile.html"]')?.closest('li');
   if (profileMenuItem) {
     profileMenuItem.classList.add('mobile-profile-item');
+    const profileLink = profileMenuItem.querySelector('a');
+    if (profileLink && !profileLink.querySelector('.nav-icon-label')) {
+      const label = document.createElement('span');
+      label.className = 'nav-icon-label';
+      label.textContent = 'Профіль';
+      label.style.fontFamily = "'Noto Serif Display', serif";
+      label.style.fontSize = '20px';
+      label.style.fontWeight = '200';
+      label.style.color = '#181818';
+      profileLink.appendChild(label);
+    }
   }
 
   const closeMenu = () => {
