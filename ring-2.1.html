@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кришталеві та срібні колечка</title>
+    <link rel="stylesheet" href="/styles/first.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <nav class="main-nav">
+      <div class="logo">
+                <a class="logo-link" href="index.html">kansvi</a>
+            </div>
+            <div class="mobile-quick-actions">
+                <a class="mobile-quick-link" href="/delivery.html" aria-label="Кошик">
+                    <img class="icons" src="/photo/free-icon-basket-7087821.png" alt="">
+                </a>
+            </div>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="/necklaces.html">намиста</a></li>
+        <li><a class="nav-link" href="/bracelets.html">браслети</a></li>
+        <li><a class="nav-link" href="/rings.html">каблучки</a></li>
+        <li><a class="nav-link" href="/about.html">Про нас</a></li>
+        <li><a class="nav-icon" href="/delivery.html"> <img class="icons" src="/photo/free-icon-basket-7087821.png"
+              alt=""></a></li>
+        <li><a class="nav-icon" href="/profile.html"> <img class="icons" src="/photo/free-icon-profile-3106773.png"
+              alt=""></a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="product">
+      <div class="product-images">
+        <div class="main-image">
+          <img id="mainImage" src="/photo/колечко/2.1.webp" alt="Головне фото: Каблучка">
+        </div>
+
+        <ul class="thumbnail-list">
+          <li><img src="/photo/колечко/2.1.webp" onclick="changeImage(this)" alt="Каблучка — фото 2" /></li>
+          <li><img src="/photo/колечко/2.2.webp" onclick="changeImage(this)" alt="Каблучка — фото 3" /></li>
+          <li><img src="/photo/колечко/2.3.webp" onclick="changeImage(this)" alt="Каблучка — фото 4" /></li>
+        </ul>
+      </div>
+
+      <div class="product-details">
+        <h1>Кришталеві та срібні колечка</h1>
+        <div class="product-description">
+          <h2>Опис</h2>
+          <div class="product-specs">
+            <ul>
+              <li>Основа: корейська ювелірна резинка, кришталеві бусіни, срібні бусіни </li>
+              <li>Фурнітура: 925 проба</li>
+            </ul>
+          </div>
+          <div class="price">
+            <p>ЦІНА: 200UAH</p>
+          </div>
+          <form class="product-form">
+            <button class="add-to-cart button" type="button" data-name="Кришталеві та срібні колечка"
+              data-price="200" data-image-url="/photo/колечко/2.1.webp" data-product-url="ring-2.1.html">
+              Додати до кошика
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </section>
+  </main>    
+    <footer>
+        <div class="footer__container">
+            <div class="footer__wrapper">
+                <div class="footer__col footer__col--double">
+                    <div class="footer__col-wrap">
+                        <div class="footer__heading">Kansvi</div>
+                        <div class="footer__copyright">
+                            <p>© 2026 web.ploshka for Kansvi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__col">
+                    <div class="footer__col-wrap">
+                        <div class="footer__heading">Instagram</div>
+                        <div class="footer__social">
+                            <a class="footer__social-icon" href="https://instagram.com/kansvi" target="_blank"
+                                rel="noopener noreferrer" title="Instagram">@kansvi</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__col">
+                    <div class="footer__col-wrap">
+                        <div class="footer__heading">Контакти</div>
+                        <div class="footer__contacts-group">
+                            <div class="footer__contacts-item">
+                                <a class="footer__link" href="mailto:kansvi@gmail.com">kansvi@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/cart.js"></script>
+
+  
+
+    <script src="/script.js"></script>
+</body>
+
+</html>

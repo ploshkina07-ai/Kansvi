@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вхід</title>
+    <link rel="stylesheet" href="/styles/profile.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="logo">
+                <a class="logo-link" href="index.html">kansvi</a>
+            </div>
+            <div class="mobile-quick-actions">
+                <a class="mobile-quick-link" href="/delivery.html" aria-label="Кошик">
+                    <img class="icons" src="/photo/free-icon-basket-7087821.png" alt="">
+                </a>
+            </div>
+            <ul class="nav-list">
+                <li><a class="nav-link" href="/necklaces.html">намиста</a></li>
+                <li><a class="nav-link" href="/bracelets.html">браслети</a></li>
+                <li><a class="nav-link" href="/rings.html">каблучки</a></li>
+                <li><a class="nav-link" href="/about.html">Про нас</a></li>
+                <li><a class="nav-icon" href="/delivery.html"> <img class="icons"
+                            src="/photo/free-icon-basket-7087821.png" alt=""></a></li>
+                <li><a class="nav-icon" href="/profile.html"> <img class="icons"
+                            src="/photo/free-icon-profile-3106773.png" alt=""></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="profile-page">
+        <div class="container">
+            <div class="profile-card login-card">
+                <h1>Вхід</h1>
+                <form id="loginForm" class="profile-form login-form">
+                    <label>
+                        Email
+                        <input type="email" id="loginEmail" required>
+                    </label>
+
+                    <label>
+                        Пароль
+                        <input type="password" id="loginPassword" required>
+                    </label>
+
+                    <button type="submit" class="button">Увійти</button>
+                </form>
+                <p class="login-note">Немає акаунта? <a href="signup.html">Зареєструватися</a></p>
+            </div>
+        </div>
+    </main>
+
+    <script src="/scripts/cart.js"></script>
+
+
+    
+    <script src="/script.js"></script>
+</body>
+
+</html>
