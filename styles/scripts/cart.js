@@ -67,7 +67,76 @@ function addToCart(productName, productPrice, productImageUrl, productUrl) {
     }
 
     saveCart(cart);
-    alert(`Товар "${productName}" додано до кошика!`);
+    showCartToast('Товар додано до кошику');
+}
+
+function showCartToast(message) {
+    if (document.getElementById('cart-toast-styles')) {
+        let toast = document.getElementById('cart-toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'cart-toast';
+            toast.className = 'cart-toast';
+            document.body.appendChild(toast);
+        }
+
+        toast.textContent = message;
+        toast.classList.remove('is-visible');
+        void toast.offsetWidth;
+        toast.classList.add('is-visible');
+
+        clearTimeout(showCartToast.hideTimer);
+        showCartToast.hideTimer = setTimeout(() => {
+            toast.classList.remove('is-visible');
+        }, 2200);
+        return;
+    }
+
+    const style = document.createElement('style');
+    style.id = 'cart-toast-styles';
+    style.textContent = `
+        .cart-toast {
+            position: fixed;
+            left: 50%;
+            bottom: 28px;
+            transform: translateX(-50%) translateY(18px);
+            background: rgba(43, 34, 33, 0.96);
+            color: #fff;
+            padding: 14px 20px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .cart-toast.is-visible {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    `;
+    document.head.appendChild(style);
+
+    let toast = document.getElementById('cart-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'cart-toast';
+        toast.className = 'cart-toast';
+        document.body.appendChild(toast);
+    }
+
+    toast.textContent = message;
+    toast.classList.remove('is-visible');
+    void toast.offsetWidth;
+    toast.classList.add('is-visible');
+
+    clearTimeout(showCartToast.hideTimer);
+    showCartToast.hideTimer = setTimeout(() => {
+        toast.classList.remove('is-visible');
+    }, 2200);
 }
 
 // 2. Оновлення лічильника навігації
